@@ -22,3 +22,20 @@ db.create_all()
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
+
+
+@app.get("/")
+def pets_list():
+    """Show page which has list of all pets."""
+
+    pets = Pet.query.all()
+
+    
+
+
+# @app.get('/users')
+# def users_index():
+#     """Show a page with info on all users"""
+
+#     users = User.query.order_by(User.last_name, User.first_name).all()
+#     return render_template('users/index.html', users=users)
