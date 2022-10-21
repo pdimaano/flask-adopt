@@ -10,7 +10,9 @@ class AddPetForm(FlaskForm):
 
     name = StringField("Name", validators=[InputRequired()])
 
-    species = StringField("Species", validators=[InputRequired()])
+    species = SelectField('Species',
+        choices=[('cat', 'Cat'), ('dog', 'Dog'), ('porcupine', 'Porcupine')],
+        validators=[InputRequired()])
 
     photo_url = StringField("Photo Url", validators=[InputRequired()])
 
@@ -20,6 +22,6 @@ class AddPetForm(FlaskForm):
 
     notes = TextAreaField('Notes', validators=[Optional()])
 
-    available = BooleanField('Available for Adoption?')
+    available = BooleanField('Available for Adoption?', default="checked")
 
 

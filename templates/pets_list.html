@@ -10,7 +10,7 @@
     {% for pet in pets %}
       <li>
         <img src="{{ pet.photo_url }}" alt="Pet image">
-        <a href="/pets/{{ pet.id }}">{{ pet.name }}</a>
+        <a href="/{{ pet.id }}">{{ pet.name }}</a>
         {% if pet.available == True %}
           <p>{{ pet.name }} is available!</p>
         {% else %}
