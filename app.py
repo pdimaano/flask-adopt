@@ -1,8 +1,8 @@
 """Flask app for adopt app."""
-
-from flask import Flask
-
+from models import Pet
+from flask import Flask, render_template, flash
 from flask_debugtoolbar import DebugToolbarExtension
+from forms import AddPetForm
 
 from models import db, connect_db
 
@@ -30,12 +30,26 @@ def pets_list():
 
     pets = Pet.query.all()
 
-    
+    return render_template("pets_list.html", pets=pets)
 
 
-# @app.get('/users')
-# def users_index():
-#     """Show a page with info on all users"""
+@app.route("/add/", methods=["GET", "POST"])
+def add_pet():
+    """form for adding a pet to the database"""
 
-#     users = User.query.order_by(User.last_name, User.first_name).all()
-#     return render_template('users/index.html', users=users)
+    form = AddPetForm()
+
+    if form.validate_on_submit():
+        name = form.name.data
+        species = form.species.data
+        photo_url = form.photo_url.data
+        age = form.age.data
+        notes = form.notes.data
+        available = form.available.data
+
+        flash(f"Added {name} to the list!")
+        return redirect('/add')
+
+    else:
+        return render_template(
+            "add.html", form=form)

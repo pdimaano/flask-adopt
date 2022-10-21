@@ -15,10 +15,11 @@
           <p>{{ pet.name }} is available!</p>
         {% else %}
           <p>{{ pet.name }} has been adopted, sorry!</p>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
 
-  <p><a class="btn btn-sm btn-secondary" href="/pets/new">Add a Pet</a></p>
+  <p><a class="btn btn-sm btn-secondary" href="/add">Add a Pet</a></p>
 
 {% endblock %}
